@@ -1,3 +1,6 @@
+## Sourced from https://github.com/inCaller/prometheus_bot
+## fully compatible except security updates to used go mod versions
+
 # prometheus_bot
 
 This bot is designed to alert messages from [alertmanager](https://github.com/prometheus/alertmanager).
