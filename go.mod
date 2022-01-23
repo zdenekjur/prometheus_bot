@@ -3,7 +3,7 @@ module github.com/inCaller/prometheus_bot
 go 1.17
 
 require (
-	github.com/gin-gonic/gin v1.7.4
+	github.com/gin-gonic/gin v1.7.7
 	github.com/microcosm-cc/bluemonday v1.0.16
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	gopkg.in/telegram-bot-api.v4 v4.6.4

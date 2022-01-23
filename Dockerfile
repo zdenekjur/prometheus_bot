@@ -1,11 +1,13 @@
-FROM golang:1.17.3-alpine3.14 as builder
-RUN apk add --no-cache git ca-certificates make tzdata
+FROM golang:1.17.6-alpine3.15 as builder
+RUN apk add --no-cache git ca-certificates make tzdata upx
 COPY . /app
 RUN cd /app && \
     go get -d -v && \
-    CGO_ENABLED=0 GOOS=linux go build -v -a -installsuffix cgo -o prometheus_bot
+    CGO_ENABLED=0 GOOS=linux go build -v -a -ldflags="-w -s" -o prometheus_bot
+RUN cd /app && \
+    upx --best --lzma prometheus_bot
 
-FROM alpine:3.14.3
+FROM alpine:3.15.0
 COPY --from=builder /app/prometheus_bot /
 RUN apk add --no-cache ca-certificates tzdata tini
 USER nobody
