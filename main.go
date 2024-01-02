@@ -7,7 +7,6 @@ import (
 	"flag"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"math"
 	"net/http"
@@ -16,6 +15,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+  "os"
+  "path/filepath"
 
 	"html/template"
 
@@ -384,7 +385,11 @@ func SplitString(s string, n int) []string {
 func main() {
 	flag.Parse()
 
-	content, err := ioutil.ReadFile(*config_path)
+  // cleanup file path
+  cleanConfigPath := filepath.Clean(*config_path)
+
+  // read the config file with cleaned path
+	content, err := os.ReadFile(cleanConfigPath)
 	if err != nil {
 		log.Fatalf("Problem reading configuration file: %v", err)
 	}
