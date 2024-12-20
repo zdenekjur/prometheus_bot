@@ -7,7 +7,7 @@ RUN cd /app && \
 RUN cd /app && \
     upx --best --lzma prometheus_bot
 
-FROM alpine:3.18.5
+FROM alpine:3.21.0
 COPY --from=builder /app/prometheus_bot /
 RUN apk add --no-cache ca-certificates tzdata tini
 USER nobody
